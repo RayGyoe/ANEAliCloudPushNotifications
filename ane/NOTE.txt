@@ -1,4 +1,4 @@
-com.vsdevelop.ane.android.pushnotifications
+com.vsdevelop.air.extension.pushnotifications
 
 
 <android>

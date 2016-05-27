@@ -1,19 +1,19 @@
 <extension xmlns="http://ns.adobe.com/air/extension/22.0">
-  <id>com.vsdevelop.ane.android.pushnotifications</id>
+  <id>com.vsdevelop.air.extension.pushnotifications</id>
   <versionNumber>1.0</versionNumber>
   <platforms>
     <platform name="Android-ARM"> 
         <applicationDeployment>
             <nativeLibrary>anealicloudpushnotifications.jar</nativeLibrary> 
-            <initializer>com.vsdevelop.ane.android.pushnotifications.ANEPushNotifications</initializer> 
-            <finalizer>com.vsdevelop.ane.android.pushnotifications.ANEPushNotifications</finalizer> 
+            <initializer>com.vsdevelop.air.extension.pushnotifications.ANEPushNotifications</initializer> 
+            <finalizer>com.vsdevelop.air.extension.pushnotifications.ANEPushNotifications</finalizer> 
         </applicationDeployment> 
     </platform> 
     <platform name="Android-x86">
         <applicationDeployment>
             <nativeLibrary>anealicloudpushnotifications.jar</nativeLibrary> 
-            <initializer>com.vsdevelop.ane.android.pushnotifications.ANEPushNotifications</initializer> 
-            <finalizer>com.vsdevelop.ane.android.pushnotifications.ANEPushNotifications</finalizer> 
+            <initializer>com.vsdevelop.air.extension.pushnotifications.ANEPushNotifications</initializer> 
+            <finalizer>com.vsdevelop.air.extension.pushnotifications.ANEPushNotifications</finalizer> 
         </applicationDeployment>
     </platform>
     <platform name="default">
