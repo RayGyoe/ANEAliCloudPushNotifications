@@ -1,7 +1,6 @@
 package com.vsdevelop.air.extension.pushnotifications;
 
 import com.alibaba.sdk.android.AlibabaSDK;
-import com.alibaba.sdk.android.Environment;
 import com.alibaba.sdk.android.SdkConstants;
 import com.alibaba.sdk.android.callback.InitResultCallback;
 import com.alibaba.sdk.android.push.CloudPushService;
@@ -44,28 +43,33 @@ public class ANEPushNotificationsApplication extends Application{
 	            }
 	        });
 	    }
-
 	    /**
 	     *  
 	     *
 	     * @param applicationContext
 	     */
 	    private void initCloudChannel(Context applicationContext) {
-	    	ANEPushNotificationsContext.PushService = AlibabaSDK.getService(CloudPushService.class);
-	    	
-	    	ANEPushNotificationsContext.PushService.setLogLevel(2);
+	    	ANEPushNotificationsContext.PushService = AlibabaSDK.getService(CloudPushService.class);	    	
+	    	ANEPushNotificationsContext.PushService.setLogLevel(CloudPushService.OFF);
 	    	ANEPushNotificationsContext.PushService.register(applicationContext, new CommonCallback() {
 	            public void onSuccess() {
-	                Log.i(TAG, "init CloudPushService success, device id: " + ANEPushNotificationsContext.PushService.getDeviceId() +
-	                        ", UtDid: " + ANEPushNotificationsContext.PushService.getUTDeviceId() +
-	                        ", Appkey: " + AlibabaSDK.getGlobalProperty(SdkConstants.APP_KEY));
+	            	final String pushInfo = "deviceid:"+ANEPushNotificationsContext.PushService.getDeviceId()+"||UtDid:"+ANEPushNotificationsContext.PushService.getUTDeviceId()+"||Appkey:"+AlibabaSDK.getGlobalProperty(SdkConstants.APP_KEY);
+	            	if(ANEPushNotifications.context!=null)
+            		{
+            			ANEPushNotifications.context.dispatchStatusEventAsync("CloudPushService", pushInfo);
+            		}
+	                Log.i(TAG, pushInfo);
 	            }
 	            public void onFailed(String errorCode, String errorMessage) {
 	                Log.d(TAG, "init cloudchannel failed. errorcode:" + errorCode + ", errorMessage:" + errorMessage);
+	                
+	                if(ANEPushNotifications.context!=null)
+	                {
+	                	ANEPushNotifications.context.dispatchStatusEventAsync("CloudPushService", "Failed||errorcode:"+errorCode);
+	                }
 	            }
 	        });
 
 
 	    }
-
 }

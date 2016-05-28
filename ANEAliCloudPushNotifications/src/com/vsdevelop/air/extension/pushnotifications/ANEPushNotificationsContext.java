@@ -306,64 +306,62 @@ public class ANEPushNotificationsContext extends FREContext
 			Log.d(ANEPushNotificationsContext.TAG, "AlibabaPushService init");
 			
 			
-			if(ANEPushNotificationsContext.PushService==null){
-				
-				try {
-					
-					//AlibabaSDK.setEnvironment(Environment.ONLINE);
-					AlibabaSDK.asyncInit(ANEPushNotifications.context.getActivity().getApplicationContext(), new InitResultCallback() {
-						
-					    public void onSuccess() {
-					        Log.d(ANEPushNotificationsContext.TAG, "init onesdk success");
-					        //alibabaSDK
-					        ANEPushNotifications.context.dispatchStatusEventAsync("InitAlibabaSDK", "Success");
-					        ANEPushNotificationsContext.PushService =  AlibabaSDK.getService(CloudPushService.class);
-					        if(ANEPushNotificationsContext.PushService==null)
-					        {
-					        	ANEPushNotifications.context.dispatchStatusEventAsync("CloudPushService", "Failed Error");
-					        }else{
-					        	//Log.d(ANEPushNotificationsContext.TAG, "getDeviceId:"+AlibabaSDK.getService(CloudPushService.class).getDeviceId());
-					        }
-					        ///register
-					        ANEPushNotificationsContext.PushService.setLogLevel(3);
-					    	ANEPushNotificationsContext.PushService.register(ANEPushNotifications.context.getActivity().getApplicationContext(), new CommonCallback() {
-					            public void onSuccess() {
-					            	final String pushInfo = "deviceid:"+ANEPushNotificationsContext.PushService.getDeviceId()+"||UtDid:"+ANEPushNotificationsContext.PushService.getUTDeviceId()+"||Appkey:"+AlibabaSDK.getGlobalProperty(SdkConstants.APP_KEY);
-					            	ANEPushNotifications.context.dispatchStatusEventAsync("CloudPushService", pushInfo);
-					                Log.i(ANEPushNotificationsContext.TAG, pushInfo);
-					            }
-					            public void onFailed(String errorCode, String errorMessage) {
-					            	ANEPushNotifications.context.dispatchStatusEventAsync("CloudPushService", "Failed||errorcode:"+errorCode);
-					                Log.d(ANEPushNotificationsContext.TAG, "init cloudchannel failed. errorcode:" + errorCode + ", errorMessage:" + errorMessage);
-					            }
-					        });
-					    }
-
-					    public void onFailure(int code, String message) {
-					        Log.e(ANEPushNotificationsContext.TAG, "init onesdk failed : " + message);
-					        
-					        ANEPushNotifications.context.dispatchStatusEventAsync("InitAlibabaSDK", "Failure");
-					    }
-					});
-					try {
-						return FREObject.newObject(true);
-					} catch (FREWrongThreadException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				} catch (Error er) {
-					ANEPushNotifications.context.dispatchStatusEventAsync("debug", "AlibabaSDK.asyncInit error");
-					// TODO Auto-generated catch block
-					try {
-						return FREObject.newObject(false);
-					} catch (FREWrongThreadException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				
-				
-			}
+//			if(ANEPushNotificationsContext.PushService==null){
+//				
+//				try {
+//					
+//					//AlibabaSDK.setEnvironment(Environment.ONLINE);
+//					AlibabaSDK.asyncInit(ANEPushNotifications.context.getActivity().getApplicationContext(), new InitResultCallback() {
+//						
+//					    public void onSuccess() {
+//					        Log.d(ANEPushNotificationsContext.TAG, "init onesdk success");
+//					        //alibabaSDK
+//					        ANEPushNotifications.context.dispatchStatusEventAsync("InitAlibabaSDK", "Success");
+//					        ANEPushNotificationsContext.PushService =  AlibabaSDK.getService(CloudPushService.class);
+//					        if(ANEPushNotificationsContext.PushService==null)
+//					        {
+//					        	ANEPushNotifications.context.dispatchStatusEventAsync("CloudPushService", "Failed Error");
+//					        }else{
+//					        	//Log.d(ANEPushNotificationsContext.TAG, "getDeviceId:"+AlibabaSDK.getService(CloudPushService.class).getDeviceId());
+//					        }
+//					        ///register
+//					        ANEPushNotificationsContext.PushService.setLogLevel(3);
+//					    	ANEPushNotificationsContext.PushService.register(ANEPushNotifications.context.getActivity().getApplicationContext(), new CommonCallback() {
+//					            public void onSuccess() {
+//					            	final String pushInfo = "deviceid:"+ANEPushNotificationsContext.PushService.getDeviceId()+"||UtDid:"+ANEPushNotificationsContext.PushService.getUTDeviceId()+"||Appkey:"+AlibabaSDK.getGlobalProperty(SdkConstants.APP_KEY);
+//					            	ANEPushNotifications.context.dispatchStatusEventAsync("CloudPushService", pushInfo);
+//					                Log.i(ANEPushNotificationsContext.TAG, pushInfo);
+//					            }
+//					            public void onFailed(String errorCode, String errorMessage) {
+//					            	ANEPushNotifications.context.dispatchStatusEventAsync("CloudPushService", "Failed||errorcode:"+errorCode);
+//					                Log.d(ANEPushNotificationsContext.TAG, "init cloudchannel failed. errorcode:" + errorCode + ", errorMessage:" + errorMessage);
+//					            }
+//					        });
+//					    }
+//
+//					    public void onFailure(int code, String message) {
+//					        Log.e(ANEPushNotificationsContext.TAG, "init onesdk failed : " + message);
+//					        
+//					        ANEPushNotifications.context.dispatchStatusEventAsync("InitAlibabaSDK", "Failure");
+//					    }
+//					});
+//					try {
+//						return FREObject.newObject(true);
+//					} catch (FREWrongThreadException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				} catch (Error er) {
+//					ANEPushNotifications.context.dispatchStatusEventAsync("debug", "AlibabaSDK.asyncInit error");
+//					// TODO Auto-generated catch block
+//					try {
+//						return FREObject.newObject(false);
+//					} catch (FREWrongThreadException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//				}
+//			}
 
 			Log.d(ANEPushNotificationsContext.TAG, "AlibabaPushService end");
 			

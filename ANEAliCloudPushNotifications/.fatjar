@@ -1,5 +1,5 @@
 #Fat Jar Configuration File
-#Mon May 23 03:43:12 CST 2016
+#Sat May 28 06:11:15 CST 2016
 onejar.license.required=false
 manifest.classpath=
 manifest.removesigners=true
@@ -10,5 +10,5 @@ manifest.mainclass=
 manifest.file=<createnew>
 jarname.isextern=false
 onejar.expand=
-excludes=<jar|android-support-v4.jar>;<jar|FlashRuntimeExtensions.jar>
+excludes=<po|ANEAliCloudPushNotifications>~com/~example/;<jar|android-support-v4.jar>;<jar|FlashRuntimeExtensions.jar>
 includes=
